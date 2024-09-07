@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Course Match - Friends' Courses</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+    import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js';
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCljBBZFbRxgG53uABKFfdm7xJ1he3gJxg",
+      authDomain: "coursematch-23.firebaseapp.com",
+      databaseURL: "https://coursematch-23-default-rtdb.firebaseio.com",
+      projectId: "coursematch-23",
+      storageBucket: "coursematch-23.appspot.com",
+      messagingSenderId: "808587892839",
+      appId: "1:808587892839:web:d001038ae2a79dc81d1cc2",
+      measurementId: "G-8KEDSHM3MJ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Retrieve and display courses
+    const coursesRef = ref(database, 'courses');
+    onValue(coursesRef, (snapshot) => {
+      const coursesList = snapshot.val();
+      let output = '';
+
+      if (coursesList) {
+        // Convert object to array
+        const coursesArray = Object.entries(coursesList)
+          .map(([key, value]) => ({ id: key, ...value }))
+          .sort((a, b) => b.timestamp - a.timestamp); // Newest first
+
+        // Function to format timestamp
+        const formatDate = (timestamp) => {
+          const date = new Date(timestamp);
+          return date.toLocaleString(); // Adjust format as needed
+        };
+
+        // Generate output
+        coursesArray.forEach(course => {
+          output += `<p>• ${course.name} is doing ${course.course}. Link: <a href="${course.link}" target="_blank">Course Link</a> <br>Submitted at: ${formatDate(course.timestamp)}</p>`;
+        });
+      } else {
+        output = '<p>No courses available.</p>';
+      }
+
+      document.getElementById('courseList').innerHTML = output;
+    }, (error) => {
+      console.error('Error fetching data:', error);
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Course Match</h1>
+  </header>
+
+  <h2>Your Friends' Courses</h2>
+  <div id="courseList">
+    <!-- List of courses will be dynamically inserted here -->
+  </div>
+</body>
+</html>

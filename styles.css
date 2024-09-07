@@ -1,0 +1,67 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #d1001f;
+    color: white;
+    padding: 20px 30px; /* Adjusted padding for uniformity */
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  
+  
+  input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px; /* Curved borders for inputs */
+    border: 1px solid #ccc;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #d1001f;
+    box-shadow: 0 0 8px rgba(209, 0, 31, 0.5); /* Enhanced shadow on focus */
+  }
+  
+  button {
+    background-color: #d1001f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px; /* Curved borders for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Added transition for box-shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+  }
+  
+  button:hover {
+    background-color: #a80016;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  }
+  
+  #courseList {
+    text-align: left;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px; /* Curved borders for course list */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for course list */
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+  }
